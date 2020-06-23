@@ -1,10 +1,11 @@
- sudo: required
- language: generic
- services:
-   - docker
+language: generic
+sudo: required
 
-  before_install:
-    - docker build -t marcinmarkowskig/docker-react-grider -f Dockerfile.dev .
+services:
+  - docker
 
-  script:
-    - docker run -e CI=true marcinmarkowskig/docker-react-grider npm run test -- --coverage
+before_install:
+  - docker build -t stephengrider/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true stephengrider/docker-react npm run test
